@@ -30219,31 +30219,31 @@ var ConnectedApp = exports.ConnectedApp = (0, _reactRedux.connect)(function mapS
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 exports.default = function () {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { good: [], bad: [], current: '' };
-    var action = arguments[1];
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { good: [], bad: [], current: '' };
+  var action = arguments[1];
 
-    switch (action.type) {
-        case 'ADD_GOOD':
-            return _extends({}, state, {
-                good: [].concat(_toConsumableArray(state.good), [action.payload])
-            });
-        case 'ADD_BAD':
-            return _extends({}, state, {
-                bad: [].concat(_toConsumableArray(state.bad), [action.payload])
-            });
-        case 'NEW_IMAGE':
-            return _extends({}, state, {
-                current: action.payload
-            });
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case 'ADD_GOOD':
+      return _extends({}, state, {
+        good: [].concat(_toConsumableArray(state.good), [action.payload])
+      });
+    case 'ADD_BAD':
+      return _extends({}, state, {
+        bad: [].concat(_toConsumableArray(state.bad), [action.payload])
+      });
+    case 'NEW_IMAGE':
+      return _extends({}, state, {
+        current: action.payload
+      });
+    default:
+      return state;
+  }
 };
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -52119,6 +52119,10 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(4);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _reactRedux = __webpack_require__(141);
 
 var _reduxDevtoolsInstrument = __webpack_require__(353);
@@ -52193,9 +52197,9 @@ function createDevTools(children) {
 
     return DevTools;
   }(_react.Component), _class.contextTypes = {
-    store: _react.PropTypes.object
+    store: _propTypes2.default.object
   }, _class.propTypes = {
-    store: _react.PropTypes.object
+    store: _propTypes2.default.object
   }, _class.instrument = function (options) {
     return (0, _reduxDevtoolsInstrument2.default)(function (state, action) {
       return Monitor.update(monitorProps, state, action);
@@ -65128,7 +65132,7 @@ function getNewImage() {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -65148,111 +65152,131 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var App = function (_Component) {
-    _inherits(App, _Component);
+  _inherits(App, _Component);
 
-    function App(props) {
-        _classCallCheck(this, App);
+  function App(props) {
+    _classCallCheck(this, App);
 
-        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-        _this.props = props;
-        return _this;
+    _this.props = props;
+    return _this;
+  }
+
+  _createClass(App, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.getNewImage();
     }
+  }, {
+    key: 'clickBad',
+    value: function clickBad(current) {
+      this.props.addToBad(current);
+      this.props.getNewImage();
+    }
+  }, {
+    key: 'clickGood',
+    value: function clickGood(current) {
+      this.props.addToGood(current);
+      this.props.getNewImage();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
 
-    _createClass(App, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            this.props.getNewImage();
-        }
-    }, {
-        key: 'clickBad',
-        value: function clickBad(current) {
-            this.props.addToBad(current);
-            this.props.getNewImage();
-        }
-    }, {
-        key: 'clickGood',
-        value: function clickGood(current) {
-            this.props.addToGood(current);
-            this.props.getNewImage();
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var _this2 = this;
+      return _react2.default.createElement(
+        'div',
+        { className: 'row' },
+        _react2.default.createElement(
+          'div',
+          { className: 'flex col-sm-3' },
+          _react2.default.createElement(
+            'div',
+            { className: 'block-level' },
+            _react2.default.createElement(
+              'h2',
+              { className: 'text-center' },
+              ' Not Cute: '
+            ),
+            ' '
+          ),
+          ' ',
+          this.props.bad.map(function (item, index) {
+            return _react2.default.createElement('img', { className: 'image-flex',
+              src: item,
+              key: index
+            });
+          })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'col-sm-6 full-height' },
+          _react2.default.createElement(
+            'div',
+            { className: 'center--imageFrame' },
+            _react2.default.createElement('img', { className: 'main-img',
+              src: this.props.current
+            }),
+            ' '
+          ),
+          ' ',
+          _react2.default.createElement(
+            'div',
+            { className: 'centered' },
+            _react2.default.createElement(
+              _semanticUiReact.Button.Group,
+              null,
+              _react2.default.createElement(
+                _semanticUiReact.Button,
+                { color: 'google plus',
+                  onClick: function onClick() {
+                    return _this2.clickBad(_this2.props.current);
+                  } },
+                ' Not so cutie '
+              ),
+              ' ',
+              _react2.default.createElement(_semanticUiReact.Button.Or, { text: 'or' }),
+              _react2.default.createElement(
+                _semanticUiReact.Button,
+                { positive: true, onClick: function onClick() {
+                    return _this2.clickGood(_this2.props.current);
+                  } },
+                ' Super Cute '
+              ),
+              ' '
+            ),
+            ' '
+          ),
+          ' '
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'flex col-sm-3' },
+          _react2.default.createElement(
+            'div',
+            { className: 'block-level' },
+            _react2.default.createElement(
+              'h2',
+              { className: 'text-center' },
+              ' Cute: '
+            ),
+            ' '
+          ),
+          ' ',
+          this.props.good.map(function (item, index) {
+            return _react2.default.createElement('img', { className: 'image-flex',
+              src: item,
+              key: index
+            });
+          }),
+          ' '
+        )
+      );
+    }
+  }]);
 
-            return _react2.default.createElement(
-                'div',
-                { className: 'row' },
-                _react2.default.createElement(
-                    'div',
-                    { className: 'flex col-sm-3' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'block-level' },
-                        _react2.default.createElement(
-                            'h2',
-                            { className: 'text-center' },
-                            'Not Cute:'
-                        )
-                    ),
-                    this.props.bad.map(function (item, index) {
-                        return _react2.default.createElement('img', { className: 'image-flex', src: item, key: index });
-                    })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'col-sm-6 full-height' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'center--imageFrame' },
-                        _react2.default.createElement('img', { className: 'main-img', src: this.props.current })
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'centered' },
-                        _react2.default.createElement(
-                            _semanticUiReact.Button.Group,
-                            null,
-                            _react2.default.createElement(
-                                _semanticUiReact.Button,
-                                { color: 'google plus', onClick: function onClick() {
-                                        return _this2.clickBad(_this2.props.current);
-                                    } },
-                                'Not so cutie'
-                            ),
-                            _react2.default.createElement(_semanticUiReact.Button.Or, { text: 'or' }),
-                            _react2.default.createElement(
-                                _semanticUiReact.Button,
-                                { positive: true, onClick: function onClick() {
-                                        return _this2.clickGood(_this2.props.current);
-                                    } },
-                                'Super Cute'
-                            )
-                        )
-                    )
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'flex col-sm-3' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'block-level' },
-                        _react2.default.createElement(
-                            'h2',
-                            { className: 'text-center' },
-                            'Cute:'
-                        )
-                    ),
-                    this.props.good.map(function (item, index) {
-                        return _react2.default.createElement('img', { className: 'image-flex', src: item, key: index });
-                    })
-                )
-            );
-        }
-    }]);
-
-    return App;
+  return App;
 }(_react.Component);
 
 exports.default = App;
@@ -65276,26 +65300,26 @@ var _redux = __webpack_require__(235);
 
 var _reactRedux = __webpack_require__(141);
 
+var _reduxDevtools = __webpack_require__(445);
+
+var _reduxThunk = __webpack_require__(446);
+
+var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+
 var _App = __webpack_require__(447);
 
 var _reducer = __webpack_require__(448);
 
 var _reducer2 = _interopRequireDefault(_reducer);
 
-var _reduxThunk = __webpack_require__(446);
-
-var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
-
-var _reduxDevtools = __webpack_require__(445);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var store = (0, _redux.createStore)(_reducer2.default, (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk2.default), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 
 _reactDom2.default.render(_react2.default.createElement(
-    _reactRedux.Provider,
-    { store: store },
-    _react2.default.createElement(_App.ConnectedApp, null)
+  _reactRedux.Provider,
+  { store: store },
+  _react2.default.createElement(_App.ConnectedApp, null)
 ), document.getElementById('root'));
 
 /***/ })
