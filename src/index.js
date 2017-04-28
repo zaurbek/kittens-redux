@@ -10,7 +10,7 @@ import { ConnectedApp } from './components/App.jsx';
 import reducer from './reducers/reducer';
 
 
-const store = createStore(reducer,compose(applyMiddleware(thunk), window.devToolsExtension ? window.devToolsExtension() : f => f));
+const store = createStore(reducer, compose(applyMiddleware(thunk), window.devToolsExtension ? window.devToolsExtension() : f => f));
 
 
 ReactDOM.render(
