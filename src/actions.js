@@ -6,7 +6,7 @@ export function addToBad(link) {
     return {type: 'ADD_BAD', payload: link}
 }
 export function fetchNewImage() {
-    return fetch('http://random.cat/meow')
+    return fetch('https://aws.random.cat/meow')
 }
 
 export function placeNewPicture(link) {
